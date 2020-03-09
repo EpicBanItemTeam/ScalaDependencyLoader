@@ -1,0 +1,43 @@
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "4.0.4"
+}
+
+version = "1.0.0"
+group = "team.ebi"
+
+defaultTasks = ["clean", "build", "shadowJar"]
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven {
+        name = "sponge"
+        url = "https://repo.spongepowered.org/maven"
+    }
+}
+
+dependencies {
+    compile "org.spongepowered:spongeapi:7.1+"
+    compile "io.github.classgraph:classgraph:4.8+"
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:all" // << "-Werror"
+}
+
+shadowJar {
+    classifier = null
+    dependencies {
+        it.include it.dependency("io.github.classgraph:.*")
+    }
+    exclude '**/module-info.class'
+    relocate 'io.github.classgraph', 'team.ebi.scaladependencyloader.classgraph'
+    relocate 'nonapi.io.github.classgraph', 'team.ebi.scaladependencyloader.classgraph.nonapi'
+}
+
+jar {
+    classifier = "pure"
+}
