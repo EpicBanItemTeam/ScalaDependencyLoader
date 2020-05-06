@@ -33,11 +33,13 @@ shadowJar {
     dependencies {
         it.include it.dependency("io.github.classgraph:.*")
     }
-    exclude '**/module-info.class'
-    relocate 'io.github.classgraph', 'team.ebi.scaladependencyloader.classgraph'
-    relocate 'nonapi.io.github.classgraph', 'team.ebi.scaladependencyloader.classgraph.nonapi'
+    from "LICENSE"
+    exclude "**/module-info.class"
+    relocate "io.github.classgraph", "team.ebi.scaladependencyloader.classgraph"
+    relocate "nonapi.io.github.classgraph", "team.ebi.scaladependencyloader.classgraph.nonapi"
 }
 
 jar {
+    from "LICENSE"
     classifier = "pure"
 }
