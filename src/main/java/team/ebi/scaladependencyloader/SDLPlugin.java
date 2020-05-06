@@ -117,9 +117,9 @@ public class SDLPlugin
 
     private boolean checkIsZip(Path file)
     {
-        try (ZipFile ignored = new ZipFile(file.toFile()))
+        try (ZipFile zip = new ZipFile(file.toFile()))
         {
-            return true;
+            return zip.getEntry("META-INF/MANIFEST.MF") != null;
         }
         catch (IOException e)
         {
