@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 @NonnullByDefault
-@Plugin(version = SDLPlugin.VERSION, id = SDLPlugin.ID, name = SDLPlugin.NAME, description = SDLPlugin.NAME)
+@Plugin(version = SDLPlugin.VERSION, id = SDLPlugin.ID, name = SDLPlugin.NAME, description = SDLPlugin.DESCRIPTION)
 public class SDLPlugin
 {
     public static final String VERSION = "1.0.0";
     public static final String ID = "scala" + "dependency" + "loader";
     public static final String NAME = "Scala" + "Dependency" + "Loader";
+    public static final String DESCRIPTION = "A loader for adding scala libraries to sponge servers (on spongeforge servers it will do nothing)";
 
     @Inject
     public SDLPlugin(Logger l, @ConfigDir(sharedRoot = false) Path p)
